@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import { Header, ListItem } from 'react-native-elements';
+import { Header, ListItem, Icon } from 'react-native-elements';
 
 const App = () => {
 
@@ -20,6 +20,16 @@ const App = () => {
     }
   }, []);
 
+  const addContact = () => {
+    alert(`Adicionar novo usuário.`);
+    // TODO: Implementar funcionalidade
+  };
+
+  const handlePress = contact => {
+    alert(`Contato ${contact.first_name} foi clicado!`);
+    // TODO: Implementar funcionalidade
+  };
+
   if (isLoading) {
     return (
       <View style={styles.loading}>
@@ -33,7 +43,13 @@ const App = () => {
         <Header 
           leftComponent={{ icon: 'contacts', color: '#fff' }}
           centerComponent={{ text: 'CONTACT LIST', style: { color: '#fff', fontWeight: 'bold' } }}
-          rightComponent={{ icon: 'add', color: '#fff' }}
+          rightComponent={(
+            <Icon 
+              name="add" 
+              color="#fff" 
+              onPress={() => addContact()}
+            />
+          )}
         />
         {
           contactList.map((contact, index) => (
@@ -45,6 +61,8 @@ const App = () => {
               subtitle={contact.email}
               subtitleStyle={{ marginLeft: 10 }}
               bottomDivider
+              chevron
+              onPress={() => handlePress(contact)}
             />
           ))
         }
