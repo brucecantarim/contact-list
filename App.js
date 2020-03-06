@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import { Header, ListItem, Icon } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
+
+import Header from './components/Header';
 
 const App = () => {
 
@@ -41,17 +43,7 @@ const App = () => {
 
   return (
       <Animatable.View animation="slideInUp" easing="ease" style={styles.container}>
-        <Header 
-          leftComponent={{ icon: 'contacts', color: '#fff' }}
-          centerComponent={{ text: 'CONTACT LIST', style: { color: '#fff', fontWeight: 'bold' } }}
-          rightComponent={(
-            <Icon 
-              name="add" 
-              color="#fff" 
-              onPress={() => addContact()}
-            />
-          )}
-        />
+        <Header title="CONTACT LIST" addContact={addContact} />
         {
           contactList.map((contact, index) => (
             <ListItem
