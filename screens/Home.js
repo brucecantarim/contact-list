@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable';
 
 import Header from '../components/Header';
 
-const Home = () => {
+const Home = ({ navigation: { navigate } }) => {
 
   const [ contactList, setContactList ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
@@ -29,8 +29,7 @@ const Home = () => {
   };
 
   const handlePress = contact => {
-    alert(`Contato ${contact.first_name} foi clicado!`);
-    // TODO: Implementar funcionalidade
+    navigate('Profile', { contact, addContact });
   };
 
   if (isLoading) {
